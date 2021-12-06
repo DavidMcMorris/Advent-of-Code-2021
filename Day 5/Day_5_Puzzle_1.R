@@ -32,6 +32,6 @@ for(i in 1:nrow(v_lines)){
 coords <- rbind(h_coords,v_coords)
 strings <- paste(coords[,1],coords[,2])
 
-number <- sum(table(strings)==max(table(strings)))
+number <- sum(table(strings)>=2)
 
 print(number)

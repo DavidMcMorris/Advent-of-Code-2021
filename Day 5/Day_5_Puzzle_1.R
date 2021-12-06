@@ -32,16 +32,6 @@ for(i in 1:nrow(v_lines)){
 coords <- rbind(h_coords,v_coords)
 strings <- paste(coords[,1],coords[,2])
 
-x <- 0
-for(i in 1:length(strings)){
-	x <- c(x,sum(strings == strings[i]))
-}
-
-max_overlaps <- max(x)
-
-number <- 0
-for(i in 2:max_overlaps){
-	number <- number + sum(x==i)/i
-}
+number <- sum(table(strings)>=2)
 
 print(number)

@@ -14,6 +14,7 @@ print(number)
 digits <- input[paste("V",1:10,sep="")]
 digits[] <- lapply(digits, as.character)
 
+# Determine which wire goes where for a set of digits
 rewire <- function(x){
   wires <- NULL
   one <- strsplit(x[which(nchar(x) == 2)], split = "")[[1]]
@@ -34,12 +35,14 @@ rewire <- function(x){
   return(wires)
 }
 
+# Interpret a combination of segments as a number
 interpreter <- function(x){
   seven_digit <- data.frame(arrangement = c("1111110","0110000","1101101","1111001","0110011","1011011","1011111","1110000","1111111","1111011"), number = 0:9, stringsAsFactors = FALSE)
   num <- seven_digit$number[which(seven_digit$arrangement == x)]
   return(num)
 }
 
+# Decode the four-digit output
 four_digit_decoder <- function(digits, output){
   number <- NULL
   wiring <- rewire(digits)
@@ -50,6 +53,7 @@ four_digit_decoder <- function(digits, output){
   return(number)
 }
 
+# Find all the four-digit outputs and add them
 result <- 0
 for(i in 1:nrow(outputs)){
   result <- result + four_digit_decoder(as.character(digits[i,]),as.character(outputs[i,]))

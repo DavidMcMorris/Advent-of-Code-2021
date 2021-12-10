@@ -4,7 +4,7 @@ input <- read.table("Day_9_Input.txt",colClasses= 'character')
 input <- matrix(nrow=nrow(input),as.numeric(unlist(strsplit(as.matrix(input),split=""))),byrow=T)
 dims <- dim(input)
 
-# Part 1
+# Part 1 Stand Alone Solution
 
 # Find where elevation increases in each direction
 DU <- rbind(rep(1,dims[2]),(diff(input) < 0) * 1)
@@ -49,3 +49,6 @@ for(i in 1:length(indices)){
 
 # Compute/print final answer
 print(prod(rev(sink_counter[order(sink_counter),])[1:3]))
+
+# Part 1 solution from part 2
+# print(sum(input[which(sink_counter > 0)] + 1))

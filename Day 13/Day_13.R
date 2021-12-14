@@ -13,16 +13,18 @@ for(i in 1:length(folds)){
   num <- as.numeric(aor[2])
   var <- aor[1]
   if(var == "x"){
-    dists <- abs(coords[,1] - num)
-    inds <- which(coords[,1] < num)
-    coords[inds,1] <- coords[inds,1] + 2*dists[inds]
-    coords[,1] <- coords[,1] - (num + 1)
+    inds <- which(coords[,1] > num)
+    dists <- abs(coords[inds,1] - num)
+    coords[inds,1] <- coords[inds,1] - 2*dists
+    coords <- unique(coords)
   }
   else {
-    dists <- abs(coords[,2] - num)
     inds <- which(coords[,2] > num)
-    coords[inds,2] <- coords[inds,2] - 2*dists[inds]
+    dists <- abs(coords[inds,2] - num)
+    coords[inds,2] <- coords[inds,2] - 2*dists
+    coords <- unique(coords)
   }
 }
 
+coords[,1]<- -coords[,1]
 plot(-coords)

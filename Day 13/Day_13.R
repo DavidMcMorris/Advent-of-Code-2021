@@ -26,5 +26,4 @@ for(i in 1:length(folds)){
   }
 }
 
-coords[,1]<- -coords[,1]
-plot(-coords)
+plot(coords[,1],-coords[,2])

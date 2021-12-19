@@ -42,7 +42,7 @@ literal_value <- function(i,input){
 # Only [[1]]: Version Sum, [[6]]: IDs, [[7]]: literal values are relevant outside the recursion
 packet_scan <- function(input, VerSum = 0, NumPackets = NULL, LengthPackets = NULL, b=0, byNumber = F, byLength = F){
   ID_list <- NULL
-  value_list <- "S"
+  value_list <- NULL
   if(byLength == T && byNumber == T){
     stop("byLength and byPackets both true")
   } else if(byLength == T){
@@ -64,6 +64,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = NULL, LengthPackets = NU
     VerSum <- VerSum + convert(paste0(input[i:(i+2)],collapse=''))
     i<-i+3
     ID <- convert(paste0(input[i:(i+2)],collapse=''))
+    value_list <- c(value_list,paste0("S",ID,collapse=""))
     ID_list <- c(ID_list,'ID',ID)
     print(ID)
     i<-i+3
@@ -101,6 +102,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = NULL, LengthPackets = NU
           LengthPackets <- NULL
         }
         output <- packet_scan(input[i:length(input)], VerSum=VerSum, NumPackets, LengthPackets, b, byNumber, byLength)
+        print(output[[6]])
         VerSum <- output[[1]]
         i <- i - 1 + output[[3]]
         if(byNumber == T){
@@ -121,6 +123,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = NULL, LengthPackets = NU
         LengthPackets = convert(paste0(input[i:(i+14)],collapse=''))
         i<-i+15
         output <- packet_scan(input[i:length(input)], VerSum=VerSum, NULL, LengthPackets, b, byNumber = F, byLength = T)
+        print(output[[6]])
         VerSum <- output[[1]]
         i <- i - 1 + output[[3]]
         if(byNumber == T){
@@ -137,6 +140,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = NULL, LengthPackets = NU
         NumPackets = convert(paste0(input[i:(i+10)],collapse=''))
         i <- i+11
         output <- packet_scan(input[i:length(input)], VerSum=VerSum, NumPackets, NULL, b, byNumber = T, byLength = F)
+        print(output[[6]])
         VerSum <- output[[1]]
         i <- i - 1 + output[[3]]
         if(byNumber == T){

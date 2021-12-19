@@ -45,7 +45,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = 1, LengthPackets = lengt
         VerSum <- output[1]
         valueLP <- output[2]
         valueNP <- output[3]
-        i <- output[4]
+        i <- i+output[4]
         b <- output[5]
       }
       else {
@@ -64,7 +64,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = 1, LengthPackets = lengt
         VerSum <- output[1]
         valueLP <- output[2]
         valueNP <- output[3]
-        i <- output[4]
+        i <- i+output[4]
         b <- output[5]
       }
       if(type == as.character(1)){
@@ -74,7 +74,7 @@ packet_scan <- function(input, VerSum = 0, NumPackets = 1, LengthPackets = lengt
         VerSum <- output[1]
         valueLP <- output[2]
         valueNP <- output[3]
-        i <- output[4]
+        i <- i+output[4]
         b <- output[5]
         }
       }

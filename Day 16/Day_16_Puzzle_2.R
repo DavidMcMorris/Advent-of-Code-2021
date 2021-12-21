@@ -39,7 +39,7 @@ literal_value <- function(i,input){
 
 # Recursively defined packet scanner
 # Returns several pieces of information:
-# Only [[1]]: Version Sum, [[6]]: IDs, [[7]]: literal values are relevant outside the recursion
+# Only [[1]]: Version Sum, [[5]]: IDs, [[6]]: literal values are relevant outside the recursion
 packet_scan <- function(input, VerSum = 0, NumPackets = NULL, LengthPackets = NULL, b=0, byNumber = F, byLength = F){
   ID_list <- NULL
   value_list <- NULL
